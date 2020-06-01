@@ -18,11 +18,16 @@ app.get('/hello-world', (req: any, res: any) => {
 app.post('/publish-scores', async (req: any, res: any) => {
   //   let score = req.body
 
-  //   updateSeqJSON(stones, realm)
+  // TODO:
+  // check score against db, reject if too low
+  // sort to fit into ordered list
+  // store new list
 
   return res.status(200).send('Published score!')
 })
 
 app.get('/get-scores', async (req: any, res: any) => {
+  // TODO:
+  // fetch from DB
   return res.status(200).json({ scoreBoard: '' })
 })
