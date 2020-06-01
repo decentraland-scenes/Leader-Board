@@ -1,9 +1,12 @@
-import { ScoreBoardText, TextTypes, buildLeaderBoard } from './leaderBoard'
+import { buildLeaderBoard } from './leaderBoard'
 import { builderScene } from './builderScene'
+import utils from '../node_modules/decentraland-ecs-utils/index'
+import { publishScore } from './serverHandler'
 
 builderScene()
 
 let clickCounter: number = 0
+let sessionActive: boolean = false
 
 const dogStatue = new Entity('dogStatue')
 engine.addEntity(dogStatue)
@@ -15,14 +18,22 @@ dogStatue.addComponent(
     scale: new Vector3(1, 1, 1),
   })
 )
-dogStatue.addComponentOrReplace(
-  new GLTFShape('models/PillarDog_01/PillarDog_01.glb')
-)
+dogStatue.addComponent(new GLTFShape('models/PillarDog_01/PillarDog_01.glb'))
 dogStatue.addComponent(
   new OnPointerDown(
     (e) => {
+      if (!sessionActive) {
+        clickCounter = 0
+        sessionActive = true
+        dogStatue.addComponentOrReplace(
+          new utils.Delay(10000, () => {
+            sessionActive = false
+            publishScore(clickCounter)
+            dogStatue.removeComponent(OnPointerDown)
+          })
+        )
+      }
       clickCounter += 1
-      log(clickCounter)
     },
     {
       hoverText: 'Click the Dog!',
@@ -39,7 +50,7 @@ smallStoneWall.addComponent(
     scale: new Vector3(1.8453333377838135, 1.8453333377838135, 6),
   })
 )
-smallStoneWall.addComponentOrReplace(
+smallStoneWall.addComponent(
   new GLTFShape('models/FenceStoneTallSmall_01/FenceStoneTallSmall_01.glb')
 )
 

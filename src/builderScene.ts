@@ -258,7 +258,7 @@ export function builderScene() {
   script4.init(options)
   script1.spawn(
     signpostRoot,
-    { text: 'Can you click\nmore times than others?', fontSize: 24 },
+    { text: 'How many times can you\nclick in 10 seconds?', fontSize: 24 },
     createChannel(channelId, signpostRoot, channelBus)
   )
   script2.spawn(

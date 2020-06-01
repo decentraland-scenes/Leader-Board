@@ -1,6 +1,11 @@
 //import * from `sampleData` as data
 import { data } from './sampleData'
 
+let scoreData = data.scoreBoard
+
+let TiltleFont = new Font(Fonts.SanFrancisco_Heavy)
+let SFFont = new Font(Fonts.SanFrancisco)
+
 export enum TextTypes {
   BIGTITLE = 'bigtitle',
   BIGVALUE = 'bigvalue',
@@ -11,9 +16,6 @@ export enum TextTypes {
   TINYVALUE = 'tinyvalue',
   TINYTITLE = 'tinytitle',
 }
-
-let TiltleFont = new Font(Fonts.SanFrancisco_Heavy)
-let SFFont = new Font(Fonts.SanFrancisco)
 
 export class ScoreBoardText extends Entity {
   constructor(
@@ -110,8 +112,6 @@ export function buildLeaderBoard(parent: Entity, length: number) {
     parent
   )
 
-  let scoreData = data.scoreBoard
-
   for (let i = 0; i < scoreData.length; i++) {
     if (i + 1 > length) {
       return
@@ -120,16 +120,16 @@ export function buildLeaderBoard(parent: Entity, length: number) {
       TextTypes.TINYTITLE,
       scoreData[i].name,
       {
-        position: new Vector3(-0.6, 0.3 - i / 4, 0),
+        position: new Vector3(-0.6, 0.2 - i / 4, 0),
       },
       parent
     )
 
     let score = new ScoreBoardText(
       TextTypes.TINYVALUE,
-      scoreData[i].score,
+      scoreData[i].score.toString(),
       {
-        position: new Vector3(0.6, 0.3 - i / 4, 0),
+        position: new Vector3(0.6, 0.2 - i / 4, 0),
       },
       parent
     )
