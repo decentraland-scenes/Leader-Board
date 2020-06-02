@@ -9,16 +9,16 @@ const userData = executeTask(async () => {
 
 // external servers being used by the project - Please change these to your own if working on something else!
 export let fireBaseServer =
-  'https://us-central1-dog-clicker.cloudfunctions.net/app/'
+  'https://us-central1-dcl-door.cloudfunctions.net/app/'
 
 // get latest scoreboard data from server
-export async function getScoreBoard(): Promise<number[][]> {
+export async function getScoreBoard() {
   try {
     let url = fireBaseServer + 'get-scores'
-    log('url used ', url)
     let response = await fetch(url)
     let json = await response.json()
-    return json.scoreBoard
+    log(json)
+    return json
   } catch (e) {
     log('error fetching scores from server ', e)
   }

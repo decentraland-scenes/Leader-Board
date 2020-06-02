@@ -1,16 +1,16 @@
 import { buildLeaderBoard } from './leaderBoard'
 import { builderScene } from './builderScene'
 import utils from '../node_modules/decentraland-ecs-utils/index'
-import { publishScore } from './serverHandler'
+import { publishScore, getScoreBoard } from './serverHandler'
 
 builderScene()
 
 let clickCounter: number = 0
 let sessionActive: boolean = false
 
+// dog statue
 const dogStatue = new Entity('dogStatue')
 engine.addEntity(dogStatue)
-
 dogStatue.addComponent(
   new Transform({
     position: new Vector3(7.5, 0, 13),
@@ -28,6 +28,7 @@ dogStatue.addComponent(
         dogStatue.addComponentOrReplace(
           new utils.Delay(10000, () => {
             sessionActive = false
+            source.playOnce()
             publishScore(clickCounter)
             dogStatue.removeComponent(OnPointerDown)
           })
@@ -41,18 +42,11 @@ dogStatue.addComponent(
   )
 )
 
-const smallStoneWall = new Entity('smallStoneWall')
-engine.addEntity(smallStoneWall)
-smallStoneWall.addComponent(
-  new Transform({
-    position: new Vector3(1, 0, 9.5),
-    rotation: new Quaternion(0, 0, 0, 1),
-    scale: new Vector3(1.8453333377838135, 1.8453333377838135, 6),
-  })
-)
-smallStoneWall.addComponent(
-  new GLTFShape('models/FenceStoneTallSmall_01/FenceStoneTallSmall_01.glb')
-)
+// sound
+let soundClip = new AudioClip('sounds/bell.mp3')
+const source = new AudioSource(soundClip)
+dogStatue.addComponentOrReplace(source)
+source.loop = false
 
 const boardParent = new Entity()
 boardParent.addComponent(
@@ -65,7 +59,12 @@ boardParent.addComponent(
 )
 engine.addEntity(boardParent)
 
-buildLeaderBoard(boardParent, 9)
+updateBoard()
+
+async function updateBoard() {
+  let scoreData: any = await getScoreBoard() // data.scoreBoard
+  buildLeaderBoard(scoreData, boardParent, 9)
+}
 
 Input.instance.subscribe('BUTTON_DOWN', ActionButton.PRIMARY, false, (e) => {
   log(`pos: `, Camera.instance.position)

@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "my-project"
+    "score-board": "dcl-door",
+    "default": "dcl-door"
   }
 }

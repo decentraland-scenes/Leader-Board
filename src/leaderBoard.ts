@@ -1,8 +1,3 @@
-//import * from `sampleData` as data
-import { data } from './sampleData'
-
-let scoreData = data.scoreBoard
-
 let TiltleFont = new Font(Fonts.SanFrancisco_Heavy)
 let SFFont = new Font(Fonts.SanFrancisco)
 
@@ -93,7 +88,11 @@ export class ScoreBoardText extends Entity {
   }
 }
 
-export function buildLeaderBoard(parent: Entity, length: number) {
+export async function buildLeaderBoard(
+  scoreData: any[],
+  parent: Entity,
+  length: number
+) {
   let nameTitle = new ScoreBoardText(
     TextTypes.BIGTITLE,
     'Player',

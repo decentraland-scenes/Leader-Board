@@ -32,6 +32,19 @@ export function builderScene() {
   })
   entity.addComponentOrReplace(transform2)
 
+  const smallStoneWall = new Entity('smallStoneWall')
+  engine.addEntity(smallStoneWall)
+  smallStoneWall.addComponent(
+    new Transform({
+      position: new Vector3(1, 0, 9.5),
+      rotation: new Quaternion(0, 0, 0, 1),
+      scale: new Vector3(1.8453333377838135, 1.8453333377838135, 6),
+    })
+  )
+  smallStoneWall.addComponent(
+    new GLTFShape('models/FenceStoneTallSmall_01/FenceStoneTallSmall_01.glb')
+  )
+
   const classicBench = new Entity('classicBench')
   engine.addEntity(classicBench)
   classicBench.setParent(_scene)
