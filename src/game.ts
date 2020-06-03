@@ -85,6 +85,12 @@ const soundSource2 = new AudioSource(clickClip)
 dogStatue.addComponentOrReplace(soundSource2)
 soundSource2.loop = false
 
+boardParent.addComponent(
+  new utils.Interval(2000, () => {
+    updateBoard()
+  })
+)
+
 // update leader board
 updateBoard()
 

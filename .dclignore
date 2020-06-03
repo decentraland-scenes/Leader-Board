@@ -13,3 +13,6 @@ Dockerfile
 dist
 
 /server
+/screenshot
+/readme-images
+README.md

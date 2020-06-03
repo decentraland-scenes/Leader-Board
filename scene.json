@@ -11,10 +11,8 @@
   "main": "bin/game.js",
   "tags": [],
   "scene": {
-    "parcels": [
-      "0,0"
-    ],
-    "base": "0,0"
+    "parcels": ["-132,-42"],
+    "base": "-132,-42"
   },
   "communications": {
     "type": "webrtc",
