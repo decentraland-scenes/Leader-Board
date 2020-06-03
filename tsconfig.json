@@ -1,7 +1,8 @@
 {
   "compilerOptions": {
     "outFile": "./bin/game.js",
-    "allowJs": true
+    "allowJs": true,
+    "emitDecoratorMetadata": false
   },
   "include": [
     "src/**/*.ts",

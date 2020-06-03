@@ -7,6 +7,7 @@ builderScene()
 
 let clickCounter: number = 0
 let sessionActive: boolean = false
+let readyToPlay: boolean = true
 
 // dog statue
 const dogStatue = new Entity('dogStatue')
@@ -22,19 +23,30 @@ dogStatue.addComponent(new GLTFShape('models/PillarDog_01/PillarDog_01.glb'))
 dogStatue.addComponent(
   new OnPointerDown(
     (e) => {
+      if (!readyToPlay) {
+        return
+      }
       if (!sessionActive) {
         clickCounter = 0
         sessionActive = true
+
         dogStatue.addComponentOrReplace(
           new utils.Delay(10000, () => {
+            readyToPlay = false
             sessionActive = false
-            source.playOnce()
+            soundSource.playOnce()
             publishScore(clickCounter)
-            dogStatue.removeComponent(OnPointerDown)
+            boardParent.addComponentOrReplace(
+              new utils.Delay(1000, () => {
+                updateBoard()
+                readyToPlay = true
+              })
+            )
           })
         )
       }
       clickCounter += 1
+      soundSource2.playOnce()
     },
     {
       hoverText: 'Click the Dog!',
@@ -42,12 +54,7 @@ dogStatue.addComponent(
   )
 )
 
-// sound
-let soundClip = new AudioClip('sounds/bell.mp3')
-const source = new AudioSource(soundClip)
-dogStatue.addComponentOrReplace(source)
-source.loop = false
-
+// reference position for the leader board
 const boardParent = new Entity()
 boardParent.addComponent(
   new Transform(
@@ -59,6 +66,7 @@ boardParent.addComponent(
 )
 engine.addEntity(boardParent)
 
+// update leader board
 updateBoard()
 
 async function updateBoard() {
@@ -66,7 +74,18 @@ async function updateBoard() {
   buildLeaderBoard(scoreData, boardParent, 9)
 }
 
-Input.instance.subscribe('BUTTON_DOWN', ActionButton.PRIMARY, false, (e) => {
-  log(`pos: `, Camera.instance.position)
-  log(`rot: `, Camera.instance.rotation)
-})
+// sounds
+let bellClip = new AudioClip('sounds/bell.mp3')
+const soundSource = new AudioSource(bellClip)
+boardParent.addComponentOrReplace(soundSource)
+soundSource.loop = false
+
+let clickClip = new AudioClip('sounds/click.mp3')
+const soundSource2 = new AudioSource(clickClip)
+dogStatue.addComponentOrReplace(soundSource2)
+soundSource2.loop = false
+
+// Input.instance.subscribe('BUTTON_DOWN', ActionButton.PRIMARY, false, (e) => {
+//   log(`pos: `, Camera.instance.position)
+//   log(`rot: `, Camera.instance.rotation)
+// })
