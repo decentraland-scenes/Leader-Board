@@ -88,49 +88,85 @@ export class ScoreBoardText extends Entity {
   }
 }
 
+let scoreBoardNames: ScoreBoardText[] = []
+let scoreBoardValues: ScoreBoardText[] = []
+
 export async function buildLeaderBoard(
   scoreData: any[],
   parent: Entity,
   length: number
 ) {
-  let nameTitle = new ScoreBoardText(
-    TextTypes.BIGTITLE,
-    'Player',
-    {
-      position: new Vector3(-0.8, 0.65, 0),
-    },
-    parent
-  )
+  // if canvas is empty
+  if (scoreBoardNames.length == 0) {
+    let nameTitle = new ScoreBoardText(
+      TextTypes.BIGTITLE,
+      'Player',
+      {
+        position: new Vector3(-0.8, 0.65, 0),
+      },
+      parent
+    )
 
-  let scoreTitle = new ScoreBoardText(
-    TextTypes.BIGTITLE,
-    'Score',
-    {
-      position: new Vector3(0.8, 0.65, 0),
-    },
-    parent
-  )
+    let scoreTitle = new ScoreBoardText(
+      TextTypes.BIGTITLE,
+      'Score',
+      {
+        position: new Vector3(0.8, 0.65, 0),
+      },
+      parent
+    )
 
-  for (let i = 0; i < scoreData.length; i++) {
-    if (i + 1 > length) {
-      return
+    for (let i = 0; i < length; i++) {
+      if (i < scoreData.length) {
+        let name = new ScoreBoardText(
+          TextTypes.TINYTITLE,
+          scoreData[i].name,
+          {
+            position: new Vector3(-0.6, 0.2 - i / 4, 0),
+          },
+          parent
+        )
+        scoreBoardNames.push(name)
+
+        let score = new ScoreBoardText(
+          TextTypes.TINYVALUE,
+          scoreData[i].score.toString(),
+          {
+            position: new Vector3(0.6, 0.2 - i / 4, 0),
+          },
+          parent
+        )
+        scoreBoardValues.push(score)
+      } else {
+        // create empty line
+
+        let name = new ScoreBoardText(
+          TextTypes.TINYTITLE,
+          '-',
+          {
+            position: new Vector3(-0.6, 0.2 - i / 4, 0),
+          },
+          parent
+        )
+        scoreBoardNames.push(name)
+
+        let score = new ScoreBoardText(
+          TextTypes.TINYVALUE,
+          '-',
+          {
+            position: new Vector3(0.6, 0.2 - i / 4, 0),
+          },
+          parent
+        )
+        scoreBoardValues.push(score)
+      }
     }
-    let name = new ScoreBoardText(
-      TextTypes.TINYTITLE,
-      scoreData[i].name,
-      {
-        position: new Vector3(-0.6, 0.2 - i / 4, 0),
-      },
-      parent
-    )
-
-    let score = new ScoreBoardText(
-      TextTypes.TINYVALUE,
-      scoreData[i].score.toString(),
-      {
-        position: new Vector3(0.6, 0.2 - i / 4, 0),
-      },
-      parent
-    )
+  } else {
+    // update existing board
+    for (let i = 0; i < length; i++) {
+      if (i > scoreData.length) continue
+      scoreBoardNames[i].getComponent(TextShape).value = scoreData[i].name
+      scoreBoardValues[i].getComponent(TextShape).value = scoreData[i].score
+    }
   }
 }

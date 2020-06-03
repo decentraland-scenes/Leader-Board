@@ -36,10 +36,13 @@ dogStatue.addComponent(
             sessionActive = false
             soundSource.playOnce()
             publishScore(clickCounter)
+            dogStatue.getComponent(OnPointerDown).hoverText = 'Time up!'
             boardParent.addComponentOrReplace(
               new utils.Delay(1000, () => {
                 updateBoard()
                 readyToPlay = true
+                dogStatue.getComponent(OnPointerDown).hoverText =
+                  'Click the Dog!'
               })
             )
           })
@@ -66,9 +69,6 @@ boardParent.addComponent(
 )
 engine.addEntity(boardParent)
 
-// update leader board
-updateBoard()
-
 async function updateBoard() {
   let scoreData: any = await getScoreBoard() // data.scoreBoard
   buildLeaderBoard(scoreData, boardParent, 9)
@@ -84,6 +84,9 @@ let clickClip = new AudioClip('sounds/click.mp3')
 const soundSource2 = new AudioSource(clickClip)
 dogStatue.addComponentOrReplace(soundSource2)
 soundSource2.loop = false
+
+// update leader board
+updateBoard()
 
 // Input.instance.subscribe('BUTTON_DOWN', ActionButton.PRIMARY, false, (e) => {
 //   log(`pos: `, Camera.instance.position)

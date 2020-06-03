@@ -30,7 +30,7 @@ export async function publishScore(score: number) {
     await userData
   }
   try {
-    let url = fireBaseServer + 'publish-score'
+    let url = fireBaseServer + 'publish-scores'
     let body = JSON.stringify({
       name: (await userData).displayName,
       id: (await userData).userId,
