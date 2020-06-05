@@ -1,5 +1,4 @@
 import { createChannel } from '../node_modules/decentraland-builder-scripts/channel'
-import { createInventory } from '../node_modules/decentraland-builder-scripts/inventory'
 import Script1 from '../3f3fe65b-c648-44bc-8781-c2a40bc95bb4/src/item'
 import Script2 from '../28352c3a-cc20-4ab4-b4b8-a4562a6b0d4d/src/item'
 import Script3 from '../68986c60-c95c-41ab-adf0-d0e02f5b5440/src/item'
@@ -258,17 +257,15 @@ export function builderScene() {
 
   const channelId = Math.random().toString(16).slice(2)
   const channelBus = new MessageBus()
-  const inventory = createInventory(UICanvas, UIContainerStack, UIImage)
-  const options = { inventory }
 
   const script1 = new Script1()
   const script2 = new Script2()
   const script3 = new Script3()
   const script4 = new Script4()
-  script1.init(options)
-  script2.init(options)
-  script3.init(options)
-  script4.init(options)
+  script1.init()
+  script2.init()
+  script3.init()
+  script4.init()
   script1.spawn(
     signpostRoot,
     { text: 'How many times can you\nclick in 10 seconds?', fontSize: 24 },

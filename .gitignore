@@ -102,8 +102,7 @@ dist
 
 # TernJS port file
 .tern-port
+
+
 server/functions/permissions.json
-
-
-
 /leader-board
