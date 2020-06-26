@@ -1,5 +1,5 @@
 import { buildLeaderBoard } from './leaderBoard'
-import { builderScene } from './builderScene'
+import { builderScene } from './builderContent'
 import utils from '../node_modules/decentraland-ecs-utils/index'
 import { publishScore, getScoreBoard } from './serverHandler'
 
@@ -85,6 +85,7 @@ const soundSource2 = new AudioSource(clickClip)
 dogStatue.addComponentOrReplace(soundSource2)
 soundSource2.loop = false
 
+// update board every 2 seconds
 boardParent.addComponent(
   new utils.Interval(2000, () => {
     updateBoard()
