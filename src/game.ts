@@ -1,6 +1,6 @@
 import { buildLeaderBoard } from './leaderBoard'
 import { builderScene } from './builderContent'
-import utils from '../node_modules/decentraland-ecs-utils/index'
+import * as utils from '@dcl/ecs-scene-utils'
 import { publishScore, getScoreBoard } from './serverHandler'
 
 builderScene()
@@ -94,8 +94,3 @@ boardParent.addComponent(
 
 // update leader board
 updateBoard()
-
-// Input.instance.subscribe('BUTTON_DOWN', ActionButton.PRIMARY, false, (e) => {
-//   log(`pos: `, Camera.instance.position)
-//   log(`rot: `, Camera.instance.rotation)
-// })
