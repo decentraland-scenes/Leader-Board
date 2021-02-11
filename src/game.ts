@@ -2,10 +2,12 @@ import { buildLeaderBoard } from './leaderBoard'
 import { builderScene } from './builderContent'
 import * as utils from '@dcl/ecs-scene-utils'
 import { publishScore, getScoreBoard } from './serverHandler'
+import * as ui from '@dcl/ui-scene-utils'
 
 builderScene()
 
-let clickCounter: number = 0
+let clickCounter = new ui.UICounter(0)
+
 let sessionActive: boolean = false
 let readyToPlay: boolean = true
 
@@ -27,7 +29,7 @@ dogStatue.addComponent(
         return
       }
       if (!sessionActive) {
-        clickCounter = 0
+        clickCounter.set(0)
         sessionActive = true
 
         dogStatue.addComponentOrReplace(
@@ -35,7 +37,7 @@ dogStatue.addComponent(
             readyToPlay = false
             sessionActive = false
             soundSource.playOnce()
-            publishScore(clickCounter)
+            publishScore(clickCounter.read())
             dogStatue.getComponent(OnPointerDown).hoverText = 'Time up!'
             boardParent.addComponentOrReplace(
               new utils.Delay(1000, () => {
@@ -48,7 +50,7 @@ dogStatue.addComponent(
           })
         )
       }
-      clickCounter += 1
+      clickCounter.increase()
       soundSource2.playOnce()
     },
     {
