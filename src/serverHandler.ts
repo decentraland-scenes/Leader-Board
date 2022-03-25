@@ -8,15 +8,15 @@ const userData = executeTask(async () => {
 })
 
 // external servers being used by the project - Please change these to your own if working on something else!
-export let fireBaseServer =
+export const fireBaseServer =
   'https://us-central1-dcl-door.cloudfunctions.net/app/'
 
 // get latest scoreboard data from server
 export async function getScoreBoard() {
   try {
-    let url = fireBaseServer + 'get-scores'
-    let response = await fetch(url)
-    let json = await response.json()
+    const url = fireBaseServer + 'get-scores'
+    const response = await fetch(url)
+    const json = await response.json()
     log(json)
     return json
   } catch (e) {
@@ -30,17 +30,17 @@ export async function publishScore(score: number) {
     await userData
   }
   try {
-    let url = fireBaseServer + 'publish-scores'
-    let body = JSON.stringify({
+    const url = fireBaseServer + 'publish-scores'
+    const body = JSON.stringify({
       name: (await userData).displayName,
       id: (await userData).userId,
-      score: score,
+      score: score
     })
     log(body)
-    let response = await fetch(url, {
+    const response = await fetch(url, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: body,
+      body: body
     })
     return response.json()
   } catch (e) {

@@ -1,5 +1,5 @@
-let TiltleFont = new Font(Fonts.SanFrancisco_Heavy)
-let SFFont = new Font(Fonts.SanFrancisco)
+const TiltleFont = new Font(Fonts.SanFrancisco_Heavy)
+const SFFont = new Font(Fonts.SanFrancisco)
 
 export enum TextTypes {
   BIGTITLE = 'bigtitle',
@@ -9,7 +9,7 @@ export enum TextTypes {
   VALUE = 'value',
   UNIT = 'unit',
   TINYVALUE = 'tinyvalue',
-  TINYTITLE = 'tinytitle',
+  TINYTITLE = 'tinytitle'
 }
 
 export class ScoreBoardText extends Entity {
@@ -25,7 +25,7 @@ export class ScoreBoardText extends Entity {
     this.addComponent(new Transform(transform))
     this.setParent(parent)
 
-    let shape = new TextShape(text)
+    const shape = new TextShape(text)
 
     shape.width = 10
 
@@ -88,8 +88,8 @@ export class ScoreBoardText extends Entity {
   }
 }
 
-let scoreBoardNames: ScoreBoardText[] = []
-let scoreBoardValues: ScoreBoardText[] = []
+const scoreBoardNames: ScoreBoardText[] = []
+const scoreBoardValues: ScoreBoardText[] = []
 
 export async function buildLeaderBoard(
   scoreData: any[],
@@ -97,42 +97,42 @@ export async function buildLeaderBoard(
   length: number
 ) {
   // if canvas is empty
-  if (scoreBoardNames.length == 0) {
-    let nameTitle = new ScoreBoardText(
+  if (scoreBoardNames.length === 0) {
+    const nameTitle = new ScoreBoardText(
       TextTypes.BIGTITLE,
       'Player',
       {
-        position: new Vector3(-0.8, 0.65, 0),
+        position: new Vector3(-0.8, 0.65, 0)
       },
       parent
     )
 
-    let scoreTitle = new ScoreBoardText(
+    const scoreTitle = new ScoreBoardText(
       TextTypes.BIGTITLE,
       'Score',
       {
-        position: new Vector3(0.8, 0.65, 0),
+        position: new Vector3(0.8, 0.65, 0)
       },
       parent
     )
 
     for (let i = 0; i < length; i++) {
       if (i < scoreData.length) {
-        let name = new ScoreBoardText(
+        const name = new ScoreBoardText(
           TextTypes.TINYTITLE,
           scoreData[i].name,
           {
-            position: new Vector3(-0.6, 0.2 - i / 4, 0),
+            position: new Vector3(-0.6, 0.2 - i / 4, 0)
           },
           parent
         )
         scoreBoardNames.push(name)
 
-        let score = new ScoreBoardText(
+        const score = new ScoreBoardText(
           TextTypes.TINYVALUE,
           scoreData[i].score.toString(),
           {
-            position: new Vector3(0.6, 0.2 - i / 4, 0),
+            position: new Vector3(0.6, 0.2 - i / 4, 0)
           },
           parent
         )
@@ -140,21 +140,21 @@ export async function buildLeaderBoard(
       } else {
         // create empty line
 
-        let name = new ScoreBoardText(
+        const name = new ScoreBoardText(
           TextTypes.TINYTITLE,
           '-',
           {
-            position: new Vector3(-0.6, 0.2 - i / 4, 0),
+            position: new Vector3(-0.6, 0.2 - i / 4, 0)
           },
           parent
         )
         scoreBoardNames.push(name)
 
-        let score = new ScoreBoardText(
+        const score = new ScoreBoardText(
           TextTypes.TINYVALUE,
           '-',
           {
-            position: new Vector3(0.6, 0.2 - i / 4, 0),
+            position: new Vector3(0.6, 0.2 - i / 4, 0)
           },
           parent
         )

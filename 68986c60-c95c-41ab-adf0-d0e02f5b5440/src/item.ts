@@ -34,7 +34,9 @@ export default class Arrow implements IScript<Props> {
 
     siren.addComponent(animator)
 
-    siren.addComponent(new GLTFShape('68986c60-c95c-41ab-adf0-d0e02f5b5440/models/Arrow.glb'))
+    siren.addComponent(
+      new GLTFShape('68986c60-c95c-41ab-adf0-d0e02f5b5440/models/Arrow.glb')
+    )
 
     if (!props.active) {
       siren.getComponent(GLTFShape).visible = false
@@ -53,7 +55,7 @@ export default class Arrow implements IScript<Props> {
     })
 
     // sync initial values
-    channel.request<boolean>('isActive', isActive =>
+    channel.request<boolean>('isActive', (isActive) =>
       this.toggle(siren, isActive)
     )
     channel.reply<boolean>('isActive', () => this.active[siren.name])

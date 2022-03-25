@@ -10,7 +10,7 @@ export function builderScene() {
   const transform = new Transform({
     position: new Vector3(0, 0, 0),
     rotation: new Quaternion(0, 0, 0, 1),
-    scale: new Vector3(1, 1, 1),
+    scale: new Vector3(1, 1, 1)
   })
   _scene.addComponentOrReplace(transform)
 
@@ -27,7 +27,7 @@ export function builderScene() {
   const transform2 = new Transform({
     position: new Vector3(8, 0, 8),
     rotation: new Quaternion(0, 0, 0, 1),
-    scale: new Vector3(1, 1, 1),
+    scale: new Vector3(1, 1, 1)
   })
   entity.addComponentOrReplace(transform2)
 
@@ -37,7 +37,7 @@ export function builderScene() {
     new Transform({
       position: new Vector3(1, 0, 9.5),
       rotation: new Quaternion(0, 0, 0, 1),
-      scale: new Vector3(1.8453333377838135, 1.8453333377838135, 6),
+      scale: new Vector3(1.8453333377838135, 1.8453333377838135, 6)
     })
   )
   smallStoneWall.addComponent(
@@ -55,7 +55,7 @@ export function builderScene() {
       3.4604628496026635e-8,
       0.9569403529167175
     ),
-    scale: new Vector3(1, 1, 1),
+    scale: new Vector3(1, 1, 1)
   })
   classicBench.addComponentOrReplace(transform3)
   const gltfShape2 = new GLTFShape('models/Bench_01/Bench_01.glb')
@@ -72,7 +72,7 @@ export function builderScene() {
   const transform4 = new Transform({
     position: new Vector3(12.5, 0, 3.5),
     rotation: new Quaternion(0, 0, 0, 1),
-    scale: new Vector3(1, 1, 1),
+    scale: new Vector3(1, 1, 1)
   })
   bluePinkMysticalMushroomTree.addComponentOrReplace(transform4)
   const gltfShape3 = new GLTFShape('models/Tree_02/Tree_02.glb')
@@ -87,7 +87,7 @@ export function builderScene() {
   const transform5 = new Transform({
     position: new Vector3(9, 0, 9),
     rotation: new Quaternion(0, 0, 0, 1),
-    scale: new Vector3(1, 1, 1),
+    scale: new Vector3(1, 1, 1)
   })
   ancientMediumStonePath.addComponentOrReplace(transform5)
   const gltfShape4 = new GLTFShape(
@@ -105,7 +105,7 @@ export function builderScene() {
   const transform6 = new Transform({
     position: new Vector3(6, 0, 9),
     rotation: new Quaternion(0, 0, 0, 1),
-    scale: new Vector3(1, 1, 1),
+    scale: new Vector3(1, 1, 1)
   })
   ancientMediumStonePath2.addComponentOrReplace(transform6)
 
@@ -116,7 +116,7 @@ export function builderScene() {
   const transform7 = new Transform({
     position: new Vector3(4, 0, 9),
     rotation: new Quaternion(0, 0, 0, 1),
-    scale: new Vector3(1, 1, 1),
+    scale: new Vector3(1, 1, 1)
   })
   ancientMediumStonePath3.addComponentOrReplace(transform7)
 
@@ -126,7 +126,7 @@ export function builderScene() {
   const transform8 = new Transform({
     position: new Vector3(4.5, 0, 3),
     rotation: new Quaternion(0, 0, 0, 1),
-    scale: new Vector3(1, 1, 1),
+    scale: new Vector3(1, 1, 1)
   })
   shrub.addComponentOrReplace(transform8)
   const gltfShape5 = new GLTFShape('models/Bush_01/Bush_01.glb')
@@ -141,7 +141,7 @@ export function builderScene() {
   const transform9 = new Transform({
     position: new Vector3(3.5, 0, 15),
     rotation: new Quaternion(0, 0, 0, 1),
-    scale: new Vector3(1, 1, 1),
+    scale: new Vector3(1, 1, 1)
   })
   shrub2.addComponentOrReplace(transform9)
   shrub2.addComponentOrReplace(gltfShape5)
@@ -152,7 +152,7 @@ export function builderScene() {
   const transform10 = new Transform({
     position: new Vector3(11.5, 0, 2.5),
     rotation: new Quaternion(0, 0, 0, 1),
-    scale: new Vector3(1, 1, 1),
+    scale: new Vector3(1, 1, 1)
   })
   balsamFlower.addComponentOrReplace(transform10)
   const gltfShape6 = new GLTFShape('models/Plant_02/Plant_02.glb')
@@ -167,7 +167,7 @@ export function builderScene() {
   const transform11 = new Transform({
     position: new Vector3(1.5, 0, 14),
     rotation: new Quaternion(0, 0, 0, 1),
-    scale: new Vector3(1, 1, 1),
+    scale: new Vector3(1, 1, 1)
   })
   sunflowerHead.addComponentOrReplace(transform11)
   const gltfShape7 = new GLTFShape('models/Flower_01/Flower_01.glb')
@@ -187,7 +187,7 @@ export function builderScene() {
       1.1506537589411892e-7,
       0.2613711953163147
     ),
-    scale: new Vector3(1.0000317096710205, 1, 1.0000317096710205),
+    scale: new Vector3(1.0000317096710205, 1, 1.0000317096710205)
   })
   signpostRoot.addComponentOrReplace(transform12)
 
@@ -206,7 +206,7 @@ export function builderScene() {
       -1.1920333520265558e-7,
       -0.010002732276916504
     ),
-    scale: new Vector3(1.0000059604644775, 1, 1.0000059604644775),
+    scale: new Vector3(1.0000059604644775, 1, 1.0000059604644775)
   })
   signpostTree.addComponentOrReplace(transform13)
 
@@ -216,7 +216,7 @@ export function builderScene() {
   const transform14 = new Transform({
     position: new Vector3(7, 2.9388692378997803, 13),
     rotation: new Quaternion(0, 0, 0, 1),
-    scale: new Vector3(1, 1, 1),
+    scale: new Vector3(1, 1, 1)
   })
   indicatorArrow.addComponentOrReplace(transform14)
 
@@ -231,7 +231,7 @@ export function builderScene() {
       -5.87460284862118e-8,
       0.8701441287994385
     ),
-    scale: new Vector3(1.0000085830688477, 1, 1.0000085830688477),
+    scale: new Vector3(1.0000085830688477, 1, 1.0000085830688477)
   })
   ballDroid.addComponentOrReplace(transform15)
   const gltfShape8 = new GLTFShape('models/Droid_01/Droid_01.glb')
@@ -251,7 +251,7 @@ export function builderScene() {
       1.192018075357737e-7,
       0.011200233362615108
     ),
-    scale: new Vector3(1.0000020265579224, 1, 1.0000020265579224),
+    scale: new Vector3(1.0000020265579224, 1, 1.0000020265579224)
   })
   signpostTree2.addComponentOrReplace(transform18)
 
